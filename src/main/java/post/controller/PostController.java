@@ -19,15 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 import post.model.Post;
 import post.repository.PostRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class PostController {
 
-    @Autowired
     PostRepository postRepository;
 
-    @GetMapping("/tutorials")
+    @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAllPosts(@RequestParam(required = false) String post) {
         try {
             List<Post> posts = new ArrayList<>();
@@ -42,7 +41,7 @@ public class PostController {
         }
     }
 
-    @PostMapping("/tutorials")
+    @PostMapping("/posts")
     public ResponseEntity<Post> createTutorial(@RequestBody Post post) {
         try {
             Post _post = postRepository
@@ -52,7 +51,7 @@ public class PostController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PutMapping("/tutorials/{id}")
+    @PutMapping("/posts/{id}")
     public ResponseEntity<Post> updateTutorial(@PathVariable("id") long id, @RequestBody Post post) {
         Optional<Post> postData = postRepository.findById(id);
         if (postData.isPresent()) {
@@ -66,7 +65,7 @@ public class PostController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    @DeleteMapping("/tutorials/{id}")
+    @DeleteMapping("/posts/{id}")
     public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
         try {
             postRepository.deleteById(id);
@@ -75,7 +74,7 @@ public class PostController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @DeleteMapping("/tutorials")
+    @DeleteMapping("/posts")
     public ResponseEntity<HttpStatus> deleteAllTutorials() {
         try {
             postRepository.deleteAll();
