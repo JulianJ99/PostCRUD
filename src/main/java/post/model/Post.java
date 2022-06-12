@@ -1,17 +1,12 @@
 package post.model;
 
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.persistence.*;
+
 @Entity
 @Table(name = "posts")
 public class Post {
-    @javax.persistence.Id
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
