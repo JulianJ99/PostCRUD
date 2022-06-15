@@ -32,6 +32,8 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
+
+
     @GetMapping("/posts")
     public ResponseEntity<List<Post>> getAllPosts(@RequestParam(required = false) String post) {
         try {
