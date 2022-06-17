@@ -61,7 +61,7 @@ public class PostControllerTest {
 
     }
 
-    // JUnit test for Get All posts REST API
+
     @Test
     public void getAllPostsTest() throws Exception{
         // given - precondition or setup
